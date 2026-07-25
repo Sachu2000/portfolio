@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sachu | Builder. Gamer. Rider. Athlete.</title>
+    
+    <!-- Google Fonts: Poppins for excellent screen readability -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome 6 for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            /* High Contrast Dark Theme Variables */
+            --bg-main: #050505;       /* Almost pure black */
+            --bg-card: #121212;       /* Deep charcoal for cards */
+            --bg-card-hover: #1a1a1a; /* Slightly lighter on hover */
+            --border-color: #2a2a2a;  /* Subtle borders for definition */
+            --text-primary: #ffffff;  /* Pure white for headings */
+            --text-body: #e5e7eb;     /* Very light gray for body text (High Readability) */
+            --accent-cyan: #00d4ff;   /* Bright, readable cyan */
+            --accent-orange: #ff8c00; /* Bright, readable orange */
+            --accent-green: #10b981;  /* Fresh green for fitness */
+        }
+
+        /* ScrollSpy Setup */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-body);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            position: relative; /* Required for ScrollSpy */
+        }
+
+        h1, h2, h3, h4, h5, .navbar-brand {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(5, 5, 5, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+        .navbar-brand {
+            color: var(--text-primary) !important;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+        .navbar-brand span {
+            color: var(--accent-cyan);
+        }
+        .nav-link {
+            color: var(--text-body) !important;
+            font-weight: 500;
+            transition: color 0.3s;
+            margin: 0 5px;
+        }
+        /* ScrollSpy Active State */
+        .nav-link.active {
+            color: var(--accent-cyan) !important;
+            font-weight: 700;
+        }
+        .nav-link:hover {
+            color: var(--accent-cyan) !important;
+        }
+        .navbar-toggler {
+            border-color: var(--border-color);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 140, 0, 0.08) 0%, transparent 50%);
+            padding-top: 80px;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Profile Picture */
+        .profile-pic {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border: 4px solid var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .profile-pic:hover {
+            transform: scale(1.03);
+        }
+
+        /* Cards - High Contrast */
+        .custom-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+            color: var(--text-body);
+        }
+        .custom-card:hover {
+            background-color: var(--bg-card-hover);
+            border-color: var(--accent-cyan);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .custom-card h4, .custom-card h5 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Icon Boxes */
+        .icon-box {
+            width: 65px;
+            height: 65px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+        }
+        .icon-cyan { background: rgba(0, 212, 255, 0.1); color: var(--accent-cyan); border: 1px solid rgba(0, 212, 255, 0.2); }
+        .icon-orange { background: rgba(255, 140, 0, 0.1); color: var(--accent-orange); border: 1px solid rgba(255, 140, 0, 0.2); }
+        .icon-purple { background: rgba(168, 85, 247, 0.1); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.2); }
+        .icon-green { background: rgba(16, 185, 129, 0.1); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.2); }
+
+        /* Buttons */
+        .btn-accent {
+            background-color: var(--accent-cyan);
+            color: #000000;
+            font-weight: 700;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .btn-accent:hover {
+            background-color: #33ddff;
+            color: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+        }
+        .btn-outline-accent {
+            border: 2px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 8px;
+            background: transparent;
+            transition: all 0.3s;
+        }
+        .btn-outline-accent:hover {
+            background-color: var(--accent-cyan);
+            color: #000000;
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: #ffffff;
+            font-weight: 700;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .btn-whatsapp:hover {
+            background-color: #1ebc57;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Section Styling */
+        .section-padding {
+            padding: 100px 0;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-orange));
+            border-radius: 2px;
+        }
+        .text-center .section-title::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000000;
+            border-top: 1px solid var(--border-color);
+        }
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        .social-link:hover {
+            background-color: var(--accent-cyan);
+            color: #000000;
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+        }
+
+        /* ===== FITNESS IMAGE ANIMATION ===== */
+        .fitness-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.3);
+        }
+        
+        .fitness-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        /* Initial state - hidden and shifted */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* When visible - animate in */
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Subtle hover effect on the image */
+        .fitness-image-wrapper:hover .fitness-image {
+            transform: scale(1.05);
+        }
+
+        /* Glow effect around the image */
+        .fitness-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent-green), var(--accent-cyan));
+            border-radius: 16px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .fitness-image-wrapper:hover::before {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<!-- Added data-bs-spy for automatic scroll highlighting -->
+<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100" tabindex="0">
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">SACHU<span>.</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#passions">Passions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#fitness">Fitness</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= HERO SECTION ================= -->
+    <section id="home" class="hero-section">
+        <div class="container text-center">
+            <p class="text-uppercase mb-3" style="color: var(--accent-cyan); letter-spacing: 4px; font-size: 0.9rem; font-weight: 600;">Fueled by Curiosity.</p>
+            <h1 class="display-3 mb-4">Hi, I'm <span class="gradient-text">Sachu</span></h1>
+            <p class="lead mb-5 mx-auto" style="max-width: 750px; color: var(--text-body); font-weight: 400;">
+                Driven by technology. Passionate about custom PC builds, immersive gaming, raw motorcycle engineering, and dedicated to fitness.
+            </p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="#passions" class="btn btn-accent btn-lg">Explore My Passions</a>
+                <a href="#contact" class="btn btn-outline-accent btn-lg">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ABOUT SECTION ================= -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 text-center mb-5 mb-lg-0">
+                    <img src="mypic.png" alt="Sachu Profile Picture" class="profile-pic" loading="lazy">
+                </div>
+                <div class="col-lg-7">
+                    <h2 class="section-title">About Me</h2>
+                    <p style="color: var(--text-body); margin-bottom: 1.5rem;">
+                        Technology has always been my biggest passion. I love building and assembling custom PCs, carefully researching every component, comparing hardware, and finding the right parts to create a system that's both powerful and well-balanced. I'm fascinated by the technology behind each component—from CPUs and GPUs to cooling solutions and storage.
+                    </p>
+                    <p style="color: var(--text-body); margin-bottom: 1.5rem;">
+                        I'm also an avid gamer, always ready to explore immersive worlds and experience great gameplay with friends. Beyond tech, motorcycles are a huge part of who I am. I love everything about them—from the engineering behind internal combustion engines and the precision of their mechanical design to the unmistakable sound, vibration, and character that every bike has. 
+                    </p>
+                    <p style="color: var(--text-body); margin-bottom: 2rem;">
+                        Whether I'm assembling a new PC, learning about the latest technology, gaming, or admiring the engineering behind motorcycles, I'm always driven by curiosity and a desire to understand how things work.
+                    </p>
+                    <a href="SACHU_Resume.pdf" class="btn btn-accent" download>
+                        <i class="fas fa-download me-2"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PASSIONS SECTION ================= -->
+    <section id="passions" class="section-padding" style="background-color: #0a0a0a;">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">My Core Passions</h2>
+            </div>
+            <div class="row g-4">
+                <!-- PC Building -->
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="icon-box icon-cyan mx-auto">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h4>PC Building</h4>
+                        <p>Researching components, optimizing airflow, cable management, and pushing hardware to its limits for the perfect build.</p>
+                    </div>
+                </div>
+                <!-- Gaming -->
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="icon-box icon-purple mx-auto">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h4>Gaming</h4>
+                        <p>Exploring immersive worlds, competitive multiplayer, and experiencing great gameplay and storytelling with friends.</p>
+                    </div>
+                </div>
+                <!-- Motorcycles -->
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="icon-box icon-orange mx-auto">
+                            <i class="fas fa-motorcycle"></i>
+                        </div>
+                        <h4>Motorcycles</h4>
+                        <p>The engineering, the mechanical precision, the sound, and the absolute freedom of being connected to the machine.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FITNESS SECTION WITH ANIMATED IMAGE ================= -->
+    <section id="fitness" class="section-padding">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="section-title">Fitness & Discipline</h2>
+                    <p style="color: var(--text-body); margin-bottom: 1.5rem; font-size: 1.1rem;">
+                        Just like my passion for motorcycles and technology, fitness is a core pillar of my life. I believe that a sharp mind requires a strong, healthy body to support it.
+                    </p>
+                    <p style="color: var(--text-body); margin-bottom: 1.5rem;">
+                        For me, the gym isn't just about lifting weights; it's about discipline, consistency, and progressive overload. It's the physical equivalent of building a custom PC: you need the right "components" (nutrition, training, recovery), a solid plan, and the patience to see long-term results. 
+                    </p>
+                    <p style="color: var(--text-body); margin-bottom: 2rem;">
+                        Balancing screen time with intense physical activity keeps me grounded, energized, and ready to tackle any challenge, whether it's debugging code or hitting a new personal record.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <span class="badge rounded-pill px-3 py-2" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 0.9rem;">
+                            <i class="fas fa-dumbbell me-1"></i> Strength Training
+                        </span>
+                        <span class="badge rounded-pill px-3 py-2" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 0.9rem;">
+                            <i class="fas fa-apple-alt me-1"></i> Clean Nutrition
+                        </span>
+                        <span class="badge rounded-pill px-3 py-2" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 0.9rem;">
+                            <i class="fas fa-brain me-1"></i> Mental Resilience
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- ANIMATED FITNESS IMAGE -->
+                <div class="col-lg-6">
+                    <div class="fitness-image-wrapper animate-on-scroll">
+                        <img src="pic_2.jpg" alt="Fitness Journey" class="fitness-image" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PROJECTS SECTION ================= -->
+    <section id="projects" class="section-padding" style="background-color: #0a0a0a;">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">My Projects</h2>
+                <p class="mb-5" style="max-width: 600px; margin: 0 auto 3rem auto;">Things I've built and worked on.</p>
+            </div>
+            <div class="row g-4">
+                <!-- Project Card 1 -->
+                <div class="col-md-4">
+                    <div class="custom-card d-flex flex-column">
+                        <div class="icon-box icon-cyan">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h5>Daily Water Intake Calculator</h5>
+                        <p class="flex-grow-1">A simple, user-friendly web tool that calculates the optimal amount of water you should drink each day based on your weight, height, and activity level.</p>
+                        <a href="#" class="btn btn-outline-accent btn-sm mt-3 w-100">View Project <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Project Card 2 -->
+                <div class="col-md-4">
+                    <div class="custom-card d-flex flex-column">
+                        <div class="icon-box icon-purple">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <h5>Online Streaming Platform</h5>
+                        <p class="flex-grow-1">A concept platform that allows users to browse, search, and watch movies and TV shows online with a clean, responsive UI.</p>
+                        <a href="#" class="btn btn-outline-accent btn-sm mt-3 w-100">View Project <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="col-md-4">
+                    <div class="custom-card d-flex flex-column text-center justify-content-center" style="border-style: dashed; border-color: var(--accent-cyan);">
+                        <i class="fas fa-code-branch fa-3x mb-3" style="color: var(--accent-cyan);"></i>
+                        <h5>Project Three</h5>
+                        <p class="flex-grow-1">Currently in the ideation phase. Something awesome is coming soon...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CONTACT SECTION ================= -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="section-title">Let's Connect</h2>
+                    <p class="lead mb-5" style="max-width: 600px; margin: 0 auto;">
+                        Have a project in mind, want to talk PC builds, motorcycles, or fitness? Reach out!
+                    </p>
+                    
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="https://api.whatsapp.com/send?phone=9567831614" target="_blank" class="btn btn-whatsapp btn-lg">
+                            <i class="fab fa-whatsapp me-2"></i> Chat on WhatsApp
+                        </a>
+                        <a href="mailto:your.email@example.com" class="btn btn-outline-accent btn-lg">
+                            <i class="fas fa-envelope me-2"></i> Send Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="text-center py-5">
+        <div class="container">
+            <div class="mb-4">
+                <a href="https://github.com/Sachu2000" target="_blank" class="social-link" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/sachu2000/" target="_blank" class="social-link" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.instagram.com/__s_a_c_h_u._instagram/" target="_blank" class="social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p class="mb-0 small" style="color: #888888;">&copy; 2026 Sachu. Built with passion, code, and caffeine.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS for Mobile Menu Auto-Close -->
+    <script>
+        // Automatically close the mobile navbar when a link is clicked
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuToggle = document.getElementById('navbarNav');
+        const bsCollapse = new bootstrap.Collapse(menuToggle, {toggle: false});
+        
+        navLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+                if (menuToggle.classList.contains('show')) {
+                    bsCollapse.hide();
+                }
+            });
+        });
+
+        // ===== SCROLL ANIMATION FOR FITNESS IMAGE =====
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with the animate-on-scroll class
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
